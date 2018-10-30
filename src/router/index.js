@@ -5,12 +5,13 @@ import store from '@/store'
 import iView from 'iview'
 import { setToken, getToken, canTurnTo } from '@/libs/util'
 import config from '@/config'
-const { homeName } = config
+const { homeName, routerBaseUrl } = config
 
 Vue.use(Router)
 const router = new Router({
   routes,
-  mode: 'history'
+  mode: 'history',
+  base: routerBaseUrl
 })
 const LOGIN_PAGE_NAME = 'login'
 

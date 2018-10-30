@@ -129,6 +129,7 @@ export default {
       this.getApi()
     },
     getTime(val){
+      console.log(val)
 
     },
     getApi: function () {

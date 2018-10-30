@@ -10,10 +10,11 @@
             <Dropdown trigger="click" style="margin-left: 20px" :transfer='true' @on-click="handleSelect" >
                 <a href="javascript:void(0)">
                     刷新间隔
-                    <Icon type="ios-arrow-down></Icon>
+                    <!-- <Icon type="ios-arrow-down></Icon> -->
                 </a>
                 <DropdownMenu slot="list">
-                    <DropdownItem v-for="(value, key) in localList" :name="key" :key="value">{{ value }}</DropdownItem>
+                    <DropdownItem v-for="(value, key) in localList" :name="key" :key="value">{{ value }}
+                    </DropdownItem>
                 </DropdownMenu>
             </Dropdown>
         </div>
@@ -51,8 +52,8 @@ export default {
     getTime() {
       return moment().format("h:mm");
     },
-    handleSelect(name){
-        this.$emit('time-change', name)
+    handleSelect(val){
+        this.$emit('time-change', val)
     }
   }
 };

@@ -44,7 +44,7 @@ import ErrorStore from './components/error-store'
 import { mapMutations, mapActions, mapGetters } from 'vuex'
 import { getNewTagList, getNextRoute, routeEqual } from '@/libs/util'
 import minLogo from '@/assets/images/logo-min.jpg'
-import maxLogo from '@/assets/images/logo.jpg'
+import maxLogo from '@/assets/images/logo.png'
 import './main.less'
 export default {
   name: 'Main',
@@ -89,6 +89,9 @@ export default {
     },
     hasReadErrorPage () {
       return this.$store.state.app.hasReadErrorPage
+    },
+    sites () {
+      return this.$store.state.user.sites
     }
   },
   methods: {
@@ -135,7 +138,13 @@ export default {
     },
     handleClick (item) {
       this.turnToPage(item)
-    }
+    },
+    initBaseData: function() {
+      // 下面为业务初始化操作，必须在用户session存在下才执行
+      console.log(JSON.stringify(this.sites));
+      let params = { site: this.sites && this.sites.length > 0 ? this.sites.toString() : '' }
+      this.$store.dispatch('getDct', params)
+    },
   },
   watch: {
     '$route' (newRoute) {
@@ -166,6 +175,10 @@ export default {
         name: this.$config.homeName
       })
     }
+
+    // 业务数据
+    this.initBaseData()
+
   }
 }
 </script>

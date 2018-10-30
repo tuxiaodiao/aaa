@@ -22,28 +22,16 @@ export default {
   components: {
     loginForm
   },
-  computed: {
-    sites () {
-      return this.$store.state.user.sites
-    }
-  },
   methods: {
     ...mapActions([
       'handleLogin',
       'getUserInfo'
     ]),
-    initBaseData: function() {
-      // 下面为业务初始化操作，必须在用户session存在下才执行
-      console.log(JSON.stringify(this.sites));
-      let params = { site: this.sites && this.sites.length > 0 ? this.sites.toString() : '' }
-      this.$store.dispatch('getDct', params)
-    },
     handleSubmit ({ userName, password }) {
       console.log('userName: ' + userName)
       console.log('password: ' + password)
       this.handleLogin({ userName, password }).then(res => {
         this.getUserInfo().then(res => {
-          this.initBaseData()
           this.$router.push({
             name: 'home'
           })
