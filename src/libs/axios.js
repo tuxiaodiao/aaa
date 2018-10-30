@@ -70,7 +70,7 @@ class HttpRequest {
           if (res.data.msg) {
             Message.error(res.data.msg)
           } else {
-            window.location.href = '/login'
+            window.location.href = '/dc/login'
             Message.error('未登录，或登录失效，请登录')
           }
         } else {
