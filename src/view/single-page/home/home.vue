@@ -6,7 +6,8 @@
 <template>
   <div class="home-bgc">
     <div>
-      <title-bar></title-bar>
+      <Icon class="screenBtn" v-bind:type="screenText" @click="screenFn"></Icon>
+      <title-bar @time-change="getTime"></title-bar>
     </div>
     <div class="gradient-line"></div>
     <div class="echarts-group">
@@ -104,7 +105,7 @@ export default {
   },
   data () {
     return {
-      screenText: 'arrow-expand'
+      screenText: 'md-expand'
     }
   },
   computed: {
@@ -127,6 +128,9 @@ export default {
     initData () {
       this.getApi()
     },
+    getTime(val){
+
+    },
     getApi: function () {
       // 请求接口
       this.$store.dispatch('dimensionality')
@@ -141,12 +145,12 @@ export default {
     },
 
     screenFn () {
-      if (this.screenText == 'arrow-expand') {
-        this.screenText = 'arrow-shrink'
+      if (this.screenText == 'md-expand') {
+        this.screenText = 'md-contract'
         $('.content-wrapper').css({padding: 0})
         this.requestFullScreen(document.documentElement)
       } else {
-        this.screenText = 'arrow-expand'
+        this.screenText = 'md-expand'
         $('.content-wrapper').css({padding: '18px'})
         this.exitFull()
       }

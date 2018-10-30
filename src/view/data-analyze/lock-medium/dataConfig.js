@@ -1,305 +1,342 @@
 
-import _ from 'underscore'
-// var myData = [];
+import _ from 'underscore';
+//var myData = [];
 
 const INIT_OPTION = {
 
-  backgroundColor: '#fff',
-  title: {
-    text: '',
-    subtext: ''
-  },
-  legend: {
-    data: ['身份证', '手机二维码'],
-    top: 4,
-    right: '20%'
-  },
-  tooltip: {
-    show: true,
-    trigger: 'axis',
-    formatter: '{b}<br/>{a}: {c}人',
-    axisPointer: {
-      type: 'shadow'
-    }
-  },
-
-  toolbox: {
-    right: 20,
-    feature: {
-      saveAsImage: {},
-      dataView: {}
-    }
-  },
-
-  grid: [{
-    show: false,
-    left: '4%',
-    top: 60,
-    bottom: 60,
-    containLabel: true,
-    width: '40%'
-  }, {
-    show: false,
-    left: '50.5%',
-    top: 80,
-    bottom: 60,
-    width: '0%'
-  }, {
-    show: false,
-    right: '4%',
-    top: 60,
-    bottom: 60,
-    containLabel: true,
-    width: '40%'
-  }],
-
-  xAxis: [
-    {
-      type: 'value',
-      inverse: true,
-      axisLine: {
-        show: false
-      },
-      axisTick: {
-        show: false
-      },
-      position: 'top',
-      axisLabel: {
+    backgroundColor: '#fff',
+    title: {
+        text: '',
+        subtext: '',
+    },
+    legend: {
+        data: ['身份证', '手机二维码'],
+        top: 4,
+        right: '20%',
+    },
+    tooltip: {
         show: true,
-        textStyle: {
-          color: '#333',
-          fontSize: 12
+        trigger: 'axis',
+        formatter: '{b}<br/>{a}: {c}人',
+        axisPointer: {
+            type: 'shadow',
         }
-      },
-      splitLine: {
-        show: true,
-        lineStyle: {
-          color: '#ddd',
-          width: 1,
-          type: 'solid'
+    },
+
+    toolbox: {
+        right: 20,
+        feature: {
+            saveAsImage: {},
+            dataView: {},
         }
-      }
+    },
+
+    grid: [{
+        show: false,
+        left: '4%',
+        top: 60,
+        bottom: 60,
+        containLabel: true,
+        width: '40%',
     }, {
-      gridIndex: 1,
-      show: false
+        show: false,
+        left: '50.5%',
+        top: 80,
+        bottom: 60,
+        width: '0%',
     }, {
-      gridIndex: 2,
-      type: 'value',
-      axisLine: {
-        show: false
-      },
-      axisTick: {
-        show: false
-      },
-      position: 'top',
-      axisLabel: {
-        show: true,
-        textStyle: {
-          color: '#333',
-          fontSize: 12
-        }
-      },
-      splitLine: {
-        show: true,
-        lineStyle: {
-          color: '#ddd',
-          width: 1,
-          type: 'solid'
-        }
-      }
-    }],
-  yAxis: [{
-    type: 'category',
-    inverse: true,
-    position: 'right',
-    axisLine: {
-      show: false
-    },
-    axisTick: {
-      show: false
-    },
-    axisLabel: {
-      show: false,
-      margin: 8,
-      textStyle: {
-        color: '#9D9EA0',
-        fontSize: 12
-      }
+        show: false,
+        right: '4%',
+        top: 60,
+        bottom: 60,
+        containLabel: true,
+        width: '40%',
+    },],
 
-    },
-    data: []
-  }, {
-    gridIndex: 1,
-    type: 'category',
-    inverse: true,
-    position: 'left',
-    axisLine: {
-      show: false
-    },
-    axisTick: {
-      show: false
-    },
-    axisLabel: {
-      show: true,
-      textStyle: {
-        color: '#333',
-        fontSize: 12,
-        align: 'center'
-      }
+    xAxis: [
+        {
+            type: 'value',
+            inverse: true,
+            axisLine: {
+                show: false,
+            },
+            axisTick: {
+                show: false,
+            },
+            position: 'top',
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: '#333',
+                    fontSize: 12,
+                },
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#ddd',
+                    width: 1,
+                    type: 'solid',
+                },
+            },
+        }, {
+            gridIndex: 1,
+            show: false,
+        }, {
+            gridIndex: 2,
+            type: 'value',
+            axisLine: {
+                show: false,
+            },
+            axisTick: {
+                show: false,
+            },
+            position: 'top',
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: '#333',
+                    fontSize: 12,
+                },
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#ddd',
+                    width: 1,
+                    type: 'solid',
+                },
+            },
+        },],
+    yAxis: [{
+        type: 'category',
+        inverse: true,
+        position: 'right',
+        axisLine: {
+            show: false
+        },
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            show: false,
+            margin: 8,
+            textStyle: {
+                color: '#9D9EA0',
+                fontSize: 12,
+            },
 
-    },
-    data: {}
-  }, {
-    gridIndex: 2,
-    type: 'category',
-    inverse: true,
-    position: 'left',
-    axisLine: {
-      show: false
-    },
-    axisTick: {
-      show: false
-    },
-    axisLabel: {
-      show: false,
-      textStyle: {
-        color: '#9D9EA0',
-        fontSize: 12
-      }
+        },
+        data: [],
+    }, {
+        gridIndex: 1,
+        type: 'category',
+        inverse: true,
+        position: 'left',
+        axisLine: {
+            show: false
+        },
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            show: true,
+            textStyle: {
+                color: '#333',
+                fontSize: 12,
+                align: 'center',
+            },
 
-    },
-    data: []
-  }],
-  series: [
-    {
-      name: '身份证',
-      type: 'bar',
-      barGap: 20,
-      barWidth: 20,
-      label: {
-        normal: {
-          show: false
         },
-        emphasis: {
-          show: true,
-          position: 'left',
-          offset: [0, 0],
-          textStyle: {
-            color: '#fff',
-            fontSize: 14
-          }
-        }
-      },
-      itemStyle: {
-        normal: {
-          color: '#659F83'
+        data:{}
+    }, {
+        gridIndex: 2,
+        type: 'category',
+        inverse: true,
+        position: 'left',
+        axisLine: {
+            show: false
         },
-        emphasis: {
-          color: '#08C7AE'
-        }
-      },
-      data: []
-    },
-    {
-      name: '手机二维码',
-      type: 'bar',
-      barGap: 20,
-      barWidth: 20,
-      xAxisIndex: 2,
-      yAxisIndex: 2,
-      label: {
-        normal: {
-          show: false
+        axisTick: {
+            show: false
         },
-        emphasis: {
-          show: true,
-          position: 'right',
-          offset: [0, 0],
-          textStyle: {
-            color: '#fff',
-            fontSize: 14
-          }
-        }
-      },
-      itemStyle: {
-        normal: {
-          color: '#F68989'
-        },
-        emphasis: {
-          color: '#F94646'
-        }
-      },
-      data: []
-    }
+        axisLabel: {
+            show: false,
+            textStyle: {
+                color: '#9D9EA0',
+                fontSize: 12,
+            },
 
-  ]
-}
+        },
+        data: [],
+    },],
+    series: [
+        {
+            name: '身份证',
+            type: 'bar',
+            barGap: 20,
+            barWidth: 20,
+            label: {
+                normal: {
+                    show: false,
+                },
+                emphasis: {
+                    show: true,
+                    position: 'left',
+                    offset: [0, 0],
+                    textStyle: {
+                        color: '#fff',
+                        fontSize: 14,
+                    },
+                },
+            },
+            itemStyle: {
+                normal: {
+                    color: '#659F83',
+                },
+                emphasis: {
+                    color: '#08C7AE',
+                },
+            },
+            data: [],
+        },
+        {
+            name: '手机二维码',
+            type: 'bar',
+            barGap: 20,
+            barWidth: 20,
+            xAxisIndex: 2,
+            yAxisIndex: 2,
+            label: {
+                normal: {
+                    show: false,
+                },
+                emphasis: {
+                    show: true,
+                    position: 'right',
+                    offset: [0, 0],
+                    textStyle: {
+                        color: '#fff',
+                        fontSize: 14,
+                    },
+                },
+            },
+            itemStyle: {
+                normal: {
+                    color: '#F68989',
+                },
+                emphasis: {
+                    color: '#F94646',
+                },
+            },
+            data: [],
+        }
+
+    ],
+};
 
 const process = function () {
-  let arg = arguments[0]
-  let dctSites = arguments[1]
-  let options = JSON.parse(JSON.stringify(INIT_OPTION))
-  let currentSite = _.find(dctSites, cur => { return cur['code'] === arg['sites'][0] })
+    let arg = arguments[0];
+    let dctSites = arguments[1];
+    let options = JSON.parse(JSON.stringify(INIT_OPTION));
+    let currentSite = _.find(dctSites, cur => { return cur['code'] === arg['sites'][0] });
 
-  try {
-    myData = []
-    // 全部景区时的data
-    var merge = []
-    arg['data'].forEach(item => {
-      item['data'].forEach(element => {
-        merge.push(element)
-      })
-    })
+    try {
+        myData = []
+        //全部景区时的data
+        var merge = [];
+        arg['data'].forEach(item => {
+            item['data'].forEach(element => {
+                merge.push(element)
+            })
+        })
 
-    // 全部景区时相同的device_name的value相加
-    var result_card = {}
-    var result_code = {}
-    var result_all = []
-    for (var i = 0; i < merge.length; i++) {
-      if (merge[i].check_medium == 12) {
-        result_card[(merge[i].device_name) || '未知'] = !result_card[merge[i].device_name] ? merge[i].value : result_card[merge[i].device_name] + merge[i].value
-      } else if (merge[i].check_medium == 13) {
-        result_code[(merge[i].device_name) || '未知'] = !result_code[merge[i].device_name] ? merge[i].value : result_code[merge[i].device_name] + merge[i].value
-      }
-      result_all[(merge[i].device_name) || '未知'] = !result_all[merge[i].device_name] ? merge[i].value : result_all[merge[i].device_name] + merge[i].value
-    }
-    var datacard = []
-    var datacode = []
-    let num = 0
-    var myData = []
-    for (let s in result_all) {
-      myData.push(s)
-      for (let m in result_card) {
-        if (m == s) {
-          datacard[num] = result_card[m]
-          break
-        } else {
-          datacard[num] = 0
+        //全部景区时相同的device_name的value相加
+        var result_card = {};
+        var result_code = {};
+        var result_all = [];
+        for (var i = 0; i < merge.length; i++) {
+            if(merge[i].check_medium==12){
+                result_card[(merge[i].device_name) || "未知"] = !result_card[merge[i].device_name] ? merge[i].value : result_card[merge[i].device_name] + merge[i].value;
+            }else if(merge[i].check_medium==13){
+                result_code[(merge[i].device_name) || "未知"] = !result_code[merge[i].device_name] ? merge[i].value : result_code[merge[i].device_name] + merge[i].value;
+            }
+            result_all[(merge[i].device_name) || "未知"] = !result_all[merge[i].device_name] ? merge[i].value : result_all[merge[i].device_name] + merge[i].value;
         }
-      }
-      for (let n in result_code) {
-        if (n == s) {
-          datacode[num] = result_code[n]
-          break
-        } else {
-          datacode[num] = 0
+        var datacard = [];
+        var datacode = [];
+        let num = 0;
+        var myData = [];
+        for(let s in result_all) {
+            myData.push(s);
+            for(let m in result_card) {
+                if(m == s) {
+                    datacard[num] = result_card[m];
+                    break;
+                } else {
+                    datacard[num] = 0;
+                }
+            }
+            for(let n in result_code) {
+                if(n == s) {
+                    datacode[num] = result_code[n];
+                    break;
+                } else {
+                    datacode[num] = 0;
+                }
+            }
+            num++;
         }
-      }
-      num++
-    }
 
-    options['series'][0]['data'] = datacard
-    options['series'][1]['data'] = datacode
-    options['yAxis'][0]['data'] = myData
-    options['yAxis'][1]['data'] = myData
-    options['yAxis'][2]['data'] = myData
-    options['title']['text'] = '验票介质数据统计'
-    options['title']['subtext'] = currentSite.name + ' ' + arg['start'] + '至' + arg['end']
-    return options
-  } catch (e) {
-    console.log(e)
-    return options
-  }
+        options['series'][0]['data'] = datacard;
+        options['series'][1]['data'] = datacode;
+        options['yAxis'][0]['data'] = myData;
+        options['yAxis'][1]['data'] = myData;
+        options['yAxis'][2]['data'] = myData;
+        options['title']['text'] = '验票介质数据统计'
+        options['title']['subtext'] = currentSite.name + ' ' + arg['start'] + '至' + arg['end']
+        return options;
+    } catch (e) {
+        console.log(e);
+        return options;
+    }
 }
 
-export { process, INIT_OPTION }
+const deal = function () {
+    let arg = arguments[0];
+    let dctSites = arguments[1];
+    //表头数据
+    let configColumns = [{title:'优惠票种/景区',key:'name'}];
+    //表格data
+    let tableData = [];
+    configColumns = [
+        {title:'验票介质',key:'device_name'},
+        {title:'身份证',key:'check_medium_card'},
+        {title:'手机二维码',key:'check_medium_code'},
+    ];
+
+    let colDct = {};
+    // for(let item of arg['data']){  
+    //     //configColumns.push({title:item['site'],key:item['site']})            
+    //     if (_.has(colDct,item['device_name'])) {
+    //         colDct[item['device_name']][item['check_medium_card']] = item['value'];
+    //     } else {
+    //         colDct[item['name']] = {};
+    //         colDct[item['device_name']][item['check_medium_name']] = item['value'];
+    //     }
+        
+    // }
+    // console.log(colDct)
+    // for(let item in colDct){      
+    //     let tmp = {};
+    //     tmp.device_name = item;
+    //     tmp.check_medium_card = colDct[item]['check_medium_name'] ||0
+    //     tmp.check_medium_code = colDct[item]['check_medium_name'] || 0       
+    //     tableData.push(tmp)          
+    // }
+    return {configColumns: configColumns, tableData: tableData};
+
+}
+
+export { process, INIT_OPTION, deal }
+

@@ -160,7 +160,7 @@ export default {
     this.setLocal(this.$i18n.locale)
 
     // 下面为业务初始化操作，必须在用户session存在下才执行
-    // console.log(JSON.stringify(this.sites));
+    console.log(JSON.stringify(this.sites));
     let params = { site: this.sites && this.sites.length > 0 ? this.sites.toString() : '' }
     this.$store.dispatch('getDct', params)
   }

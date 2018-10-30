@@ -138,9 +138,15 @@
 [v-cloak] {
   display: none;
 }
+.chart {
+  height: 400px;
+}
 .ivu-card {
   width: 90%;
 }
 .ivu-card .chart {
   width: 100%;
+}
+.site-title {
+  color: #2d8cf0;
 }
