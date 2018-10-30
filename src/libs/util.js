@@ -19,17 +19,37 @@ export const hasChild = (item) => {
   return item.children && item.children.length !== 0
 }
 
-const showThisMenuEle = (item, access) => {
-  if (item.meta && item.meta.access && item.meta.access.length) {
-    if (hasOneOf(item.meta.access, access)) return true
-    else return false
-  } else return true
+const showThisMenuEle = (item, access, sites) => {
+  if (item.meta) {
+    if (!item.meta.access && !item.meta.sites) {
+      return true
+    } else if ((item.meta.access && item.meta.access.length) && (item.meta.sites && item.meta.sites.length)) {
+      if (!hasOneOf(item.meta.access, access)) return false
+      else if (!hasOneOf(item.meta.access, access) && hasOneOf(item.meta.sites, sites)) return false
+      else if (hasOneOf(item.meta.access, access) && !hasOneOf(item.meta.sites, sites)) return false
+      else return true
+    } else if ((item.meta.access && item.meta.access.length) && !item.meta.sites) {
+      if (!hasOneOf(item.meta.access, access)) return false
+      if (hasOneOf(item.meta.access, access)) return true
+    } else if (!item.meta.access && (item.meta.sites && item.meta.sites.length)) {
+      if (!hasOneOf(item.meta.sites, sites)) return true
+    }
+  } else {
+    return true
+  }
 }
+
+// const showThisMenuEle = (item, access) => {
+//   if (item.meta && item.meta.access && item.meta.access.length) {
+//     if (hasOneOf(item.meta.access, access)) return true
+//     else return false
+//   } else return true
+// }
 /**
  * @param {Array} list 通过路由列表得到菜单列表
  * @returns {Array}
  */
-export const getMenuByRouter = (list, access) => {
+export const getMenuByRouter = (list, access, sites, isChildren) => {
   let res = []
   forEach(list, item => {
     if (!item.meta || (item.meta && !item.meta.hideInMenu)) {
@@ -38,11 +58,17 @@ export const getMenuByRouter = (list, access) => {
         name: item.name,
         meta: item.meta
       }
-      if ((hasChild(item) || (item.meta && item.meta.showAlways)) && showThisMenuEle(item, access)) {
-        obj.children = getMenuByRouter(item.children, access)
+      if ((hasChild(item) || (item.meta && item.meta.showAlways)) && showThisMenuEle(item, access, sites)) {
+        obj.children = getMenuByRouter(item.children, access, sites, true)
       }
       if (item.meta && item.meta.href) obj.href = item.meta.href
-      if (showThisMenuEle(item, access)) res.push(obj)
+      if (isChildren) {
+        if (!item.meta.sites || hasOneOf(item.meta.sites, sites)) {
+          res.push(obj)
+        }
+      } else {
+        if (showThisMenuEle(item, access, sites)) res.push(obj)
+      }
     }
   })
   return res
@@ -185,7 +211,6 @@ export const getNextRoute = (list, route) => {
     res = getHomeRoute(list)
   } else {
     const index = list.findIndex(item => routeEqual(item, route))
-    console.log(route, index, list.length)
     if (index === list.length - 1) res = list[list.length - 2]
     else res = list[index + 1]
   }

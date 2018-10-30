@@ -1,14 +1,14 @@
 <style lang="less">
-  @import './login.less';
+  @import './styles.less';
 </style>
 
 <template>
-  <div class="login">
+  <div class="login" @keydown.enter="handleLogin">
     <div class="login-con">
       <Card icon="log-in" title="欢迎登录" :bordered="false">
         <div class="form-con">
-          <login-form @on-success-valid="handleSubmit"></login-form>
-          <p class="login-tip">输入任意用户名和密码即可</p>
+          <loginForm @on-success-valid="handleSubmit"></loginForm>
+          <p class="login-tip">输入用户名和密码</p>
         </div>
       </Card>
     </div>
@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import LoginForm from '_c/login-form'
+import loginForm from './components/loginForm'
 import { mapActions } from 'vuex'
 export default {
   components: {
-    LoginForm
+    loginForm
   },
   methods: {
     ...mapActions([
@@ -28,10 +28,12 @@ export default {
       'getUserInfo'
     ]),
     handleSubmit ({ userName, password }) {
+      console.log('userName: ' + userName)
+      console.log('password: ' + password)
       this.handleLogin({ userName, password }).then(res => {
         this.getUserInfo().then(res => {
           this.$router.push({
-            name: this.$config.homeName
+            name: 'home'
           })
         })
       })

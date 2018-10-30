@@ -6,7 +6,6 @@ export const getTableData = () => {
     method: 'get'
   })
 }
-
 export const getDragList = () => {
   return axios.request({
     url: 'get_drag_list',
@@ -22,9 +21,11 @@ export const errorReq = () => {
 }
 
 export const saveErrorLogger = info => {
-  return axios.request({
-    url: 'save_error_logger',
-    data: info,
-    method: 'post'
-  })
+  // return axios.request({
+  //   url: 'save_error_logger',
+  //   data: info,
+  //   method: 'post'
+  // })
+  console.log(11111)
+  return Promise.resolve('success')
 }

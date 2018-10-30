@@ -1,0 +1,101 @@
+.home-bgc {
+  background-color: #010204;
+  color: #fff;
+}
+.home-bgc .title-bar {
+  padding: 15px 0 10px 0;
+  text-align: center;
+  position: relative;
+}
+.home-bgc .title-bar .date,
+.home-bgc .title-bar .circulation {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  font-size: 14px;
+  transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+}
+.home-bgc .title-bar .circulation {
+  left: auto;
+  right: 20px;
+}
+.home-bgc .title-bar .circulation a {
+  color: #ff0;
+}
+.home-bgc .gradient-line {
+  height: 3px;
+  margin: 5px 0;
+  width: 100%;
+  background: linear-gradient(to right, #010204, #1e5fd9, #010204);
+  background: -webkit-linear-gradient(right, #010204, #1e5fd9, #010204);
+  background: -o-linear-gradient(right, #010204, #1e5fd9, #010204);
+  background: -moz-linear-gradient(right, #010204, #1e5fd9, #010204);
+}
+.home-bgc .echarts-peroid {
+  width: 100%;
+  height: 200px;
+}
+.home-bgc .echarts-group #chart-panel {
+  width: 100%;
+  overflow: hidden;
+}
+.home-bgc .echarts-group #chart-panel > div {
+  width: 100%;
+}
+.home-bgc .echarts-group #chart-panel > div canvas {
+  width: 100%;
+}
+.home-bgc .echarts-group #chart-panel .chart {
+  width: 100%;
+}
+.home-bgc .echarts-group #chart-panel .chart > div {
+  width: 100%;
+}
+.home-bgc .echarts-group .chart {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+.home-bgc .echarts-group .ivu-card-body {
+  padding: 0;
+}
+.home-bgc .echarts-group .left > div,
+.home-bgc .echarts-group .center > div,
+.home-bgc .echarts-group .right > div {
+  background-color: #18202d;
+  margin: 3px;
+  padding: 5px;
+}
+.home-bgc .echarts-group .center .center-t {
+  padding: 0 10px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.home-bgc .echarts-group .center .center-t span {
+  line-height: 50px;
+}
+.home-bgc .echarts-group .center .chart {
+  height: 280px;
+}
+.home-bgc .echarts-group .center .map .chart {
+  width: 100%;
+  height: 600px;
+}
+.home-bgc .echarts-group .center .row-p {
+  padding: 0 10px;
+}
+.home-bgc .echarts-group .center .center-b1 {
+  border-right: 3px solid #010204;
+  padding: 10px 0;
+}
+.home-bgc .echarts-group .center .center-b2 {
+  border-left: 3px solid #010204;
+  padding: 10px 0;
+}
+.home-bgc .echarts-group .right > div .chart {
+  width: 100%;
+  height: 252px;
+}

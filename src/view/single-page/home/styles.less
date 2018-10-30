@@ -1,0 +1,120 @@
+
+.home-bgc{
+  background-color: #010204;
+  color: #fff;
+  .screenBtn {
+    position: absolute;
+    top: 20px;
+    right:20px;
+    font-size: 24px;
+  }
+  .title-bar{
+    padding: 15px 0 10px 0;
+    text-align: center;
+    position: relative;
+    .date,.circulation{
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      font-size: 14px;
+      transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+    }
+    .circulation{
+      top: 30px;
+      left: auto;
+      right: 70px;
+      a{
+        color: #ff0;
+      }
+      
+    }
+  }
+  .gradient-line{
+    height: 3px;
+    margin: 5px 0;
+    width: 100%;
+    background: linear-gradient(to right, #010204 , #1e5fd9,#010204);
+    background: -webkit-linear-gradient(right, #010204 , #1e5fd9,#010204);
+    background: -o-linear-gradient(right, #010204 , #1e5fd9,#010204);
+    background: -moz-linear-gradient(right, #010204 , #1e5fd9,#010204);
+
+  }
+  .echarts-peroid{
+    width: 100%;
+    // height:125px;
+    height: 125px;
+  }
+  .echarts-group{
+    #chart-panel{
+      width: 100%;
+      overflow: hidden;
+      >div{
+        width: 100%;
+        canvas{
+          width: 100%;
+        }
+      }
+      .chart{
+        width: 100%;      
+        >div{
+          width: 100%;
+        }
+      }
+    }
+    .chart{
+      width: 100%;
+      height:200px;
+      overflow: hidden;
+    }
+    .ivu-card-body{
+      padding: 0;
+    }
+    .left>div,.center>div,.right>div{
+      background-color: #18202d;
+      margin: 3px;
+      padding: 5px;
+    }
+    .center{
+      .center-t{
+        padding:0 10px;
+        font-size: 16px;
+        font-weight:700;
+        span{
+          line-height: 50px;
+        }
+      }
+      .chart{
+        height: 280px
+      }
+      .map .chart{
+        width: 100%;
+        height:600px;
+      
+      }
+      .row-p{
+        padding: 0 10px;
+      }
+      .center-b1{
+        border-right: 3px solid #010204;
+        padding: 10px 0;
+      }
+      .center-b2{
+        border-left: 3px solid #010204;
+        padding: 10px 0;
+      }
+    }
+    .right>div{
+      .chart{
+        width: 100%;
+        height:252px;
+      
+      }
+    }
+    
+  }
+}
+
+

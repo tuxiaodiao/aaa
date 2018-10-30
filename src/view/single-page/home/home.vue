@@ -1,83 +1,191 @@
+
+<style lang="less" >
+@import "./styles.less";
+</style>
+
 <template>
-  <div>
-    <Row :gutter="20">
-      <i-col :xs="12" :md="8" :lg="4" v-for="(infor, i) in inforCardData" :key="`infor-${i}`" style="height: 120px;padding-bottom: 10px;">
-        <infor-card shadow :color="infor.color" :icon="infor.icon" :icon-size="36">
-          <count-to :end="infor.count" count-class="count-style"/>
-          <p>{{ infor.title }}</p>
-        </infor-card>
-      </i-col>
-    </Row>
-    <Row :gutter="20" style="margin-top: 10px;">
-      <i-col :md="24" :lg="8" style="margin-bottom: 20px;">
-        <Card shadow>
-          <chart-pie style="height: 300px;" :value="pieData" text="用户访问来源"></chart-pie>
-        </Card>
-      </i-col>
-      <i-col :md="24" :lg="16" style="margin-bottom: 20px;">
-        <Card shadow>
-          <chart-bar style="height: 300px;" :value="barData" text="每周用户活跃量"/>
-        </Card>
-      </i-col>
-    </Row>
-    <Row>
-      <Card shadow>
-        <example style="height: 310px;"/>
-      </Card>
-    </Row>
+  <div class="home-bgc">
+    <div>
+      <title-bar></title-bar>
+    </div>
+    <div class="gradient-line"></div>
+    <div class="echarts-group">
+       <Row>
+         <i-col span="6" class="left">
+            <div>
+              <pay-channel-echarts></pay-channel-echarts>
+            </div>
+            <div>
+              <ticket-kind-echarts></ticket-kind-echarts>
+            </div>
+            <div>
+              <visitor-echarts></visitor-echarts>
+            </div>
+            <div>
+              <ahead-echarts></ahead-echarts>
+            </div>
+             <div>
+              <second-income-echarts></second-income-echarts>
+            </div>
+         </i-col>
+         <i-col span="12" class="center">
+           <div class="center-t clearfix">
+             <span >售票：{{siteStatTotal.sell}}</span>
+             <span style="float:right">验票：{{siteStatTotal.check}}</span>
+           </div>
+           <div class="map">
+              <map-echarts></map-echarts>
+           </div>
+           <Row class="row-p">
+              <i-col span="12" class="center-b1">
+                <div>
+                  <therma-echarts></therma-echarts>
+                </div>
+              </i-col>
+              <i-col span="12" class='center-b2'>
+                <div>
+                  <timezone-echarts></timezone-echarts>
+                </div>
+
+              </i-col>
+           </Row>
+         </i-col>
+         <i-col span="6" class="right">
+            <div>
+              <west-echarts></west-echarts>
+            </div>
+            <div>
+              <north-echarts></north-echarts>
+            </div>
+            <div>
+              <south-echarts></south-echarts>
+            </div>
+            <div>
+              <in-seven-days-echarts></in-seven-days-echarts>
+            </div>
+         </i-col>
+       </Row>
+    </div>
   </div>
 </template>
 
 <script>
-import InforCard from '_c/info-card'
-import CountTo from '_c/count-to'
-import { ChartPie, ChartBar } from '_c/charts'
-import Example from './example.vue'
+import titleBar from './components/title-bar/title-bar.vue'
+import payChannelEcharts from './components/payChannel/payChannelEcharts.vue'
+import ticketKindEcharts from './components/ticketKind/ticketKindEcharts.vue'
+import visitorEcharts from './components/visitor/visitorEcharts.vue'
+import aheadEcharts from './components/ahead/aheadEcharts.vue'
+import secondIncomeEcharts from './components/secondIncome/secondIncomeEcharts.vue'
+import timezoneEcharts from './components/timezone/timezoneEcharts.vue'
+import thermaEcharts from './components/therma/thermaEcharts.vue'
+import northEcharts from './components/north/northEcharts.vue'
+import westEcharts from './components/west/westEcharts.vue'
+import southEcharts from './components/south/southEcharts.vue'
+import inSevenDaysEcharts from './components/inSevenDays/inSevenDaysEcharts.vue'
+import mapEcharts from './components/map/mapEcharts.vue'
+import _ from 'underscore'
+import $ from 'jquery'
 export default {
   name: 'home',
   components: {
-    InforCard,
-    CountTo,
-    ChartPie,
-    ChartBar,
-    Example
+    titleBar,
+    payChannelEcharts,
+    ticketKindEcharts,
+    visitorEcharts,
+    aheadEcharts,
+    secondIncomeEcharts,
+    timezoneEcharts,
+    thermaEcharts,
+    northEcharts,
+    westEcharts,
+    southEcharts,
+    inSevenDaysEcharts,
+    mapEcharts
   },
   data () {
     return {
-      inforCardData: [
-        { title: '新增用户', icon: 'md-person-add', count: 803, color: '#2d8cf0' },
-        { title: '累计点击', icon: 'md-locate', count: 232, color: '#19be6b' },
-        { title: '新增问答', icon: 'md-help-circle', count: 142, color: '#ff9900' },
-        { title: '分享统计', icon: 'md-share', count: 657, color: '#ed3f14' },
-        { title: '新增互动', icon: 'md-chatbubbles', count: 12, color: '#E46CBB' },
-        { title: '新增页面', icon: 'md-map', count: 14, color: '#9A66E4' }
-      ],
-      pieData: [
-        {value: 335, name: '直接访问'},
-        {value: 310, name: '邮件营销'},
-        {value: 234, name: '联盟广告'},
-        {value: 135, name: '视频广告'},
-        {value: 1548, name: '搜索引擎'}
-      ],
-      barData: {
-        Mon: 13253,
-        Tue: 34235,
-        Wed: 26321,
-        Thu: 12340,
-        Fri: 24643,
-        Sat: 1322,
-        Sun: 1324
+      screenText: 'arrow-expand'
+    }
+  },
+  computed: {
+    // 获取景点权限
+    dctSites: function () {
+      let sites = _.filter(this.$store.state.statCommon.dctSites, item => {
+        return item['code'] !== '_ALL_'
+      })
+      this.site =
+        sites[0] && sites[0].hasOwnProperty('code') ? sites[0]['code'] : ''
+      this.siteName =
+        sites[0] && sites[0].hasOwnProperty('name') ? sites[0]['name'] : ''
+      return sites
+    },
+    siteStatTotal () {
+      return this.$store.state.home.siteStatTotal
+    }
+  },
+  methods: {
+    initData () {
+      this.getApi()
+    },
+    getApi: function () {
+      // 请求接口
+      this.$store.dispatch('dimensionality')
+      this.$store.dispatch('HomeAttrPlace')
+      this.$store.dispatch('hourPeriod')
+    },
+    handleSelectSite (val) {
+      if (val) {
+        this.site = val.split('_')[0]
+        this.siteName = val.split('_')[1]
+      }
+    },
+
+    screenFn () {
+      if (this.screenText == 'arrow-expand') {
+        this.screenText = 'arrow-shrink'
+        $('.content-wrapper').css({padding: 0})
+        this.requestFullScreen(document.documentElement)
+      } else {
+        this.screenText = 'arrow-expand'
+        $('.content-wrapper').css({padding: '18px'})
+        this.exitFull()
+      }
+      $('.left-sider, .header-con, .tag-nav-wrapper').fadeToggle()
+    },
+    // 全屏
+    requestFullScreen (element) {
+      var requestMethod = element.requestFullScreen || // W3C
+        element.webkitRequestFullScreen || // Chrome等
+        element.mozRequestFullScreen || // FireFox
+        element.msRequestFullScreen // IE11
+      if (requestMethod) {
+        requestMethod.call(element)
+      } else if (typeof window.ActiveXObject !== 'undefined') { // for Internet Explorer
+        var wscript = new ActiveXObject('WScript.Shell')
+        if (wscript !== null) {
+          wscript.SendKeys('{F11}')
+        }
+      }
+    },
+    // 推出全屏
+    exitFull () {
+      var exitMethod = document.exitFullscreen || // W3C
+        document.mozCancelFullScreen || // Chrome等
+        document.webkitExitFullscreen || // FireFox
+        document.webkitExitFullscreen // IE11
+      if (exitMethod) {
+        exitMethod.call(document)
+      } else if (typeof window.ActiveXObject !== 'undefined') { // for Internet Explorer
+        var wscript = new ActiveXObject('WScript.Shell')
+        if (wscript !== null) {
+          wscript.SendKeys('{F11}')
+        }
       }
     }
   },
+
   mounted () {
-    //
+    this.initData()
   }
 }
 </script>
-
-<style lang="less">
-.count-style{
-  font-size: 50px;
-}
-</style>

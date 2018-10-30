@@ -50,336 +50,353 @@ export default [
     name: 'doc',
     meta: {
       title: '文档',
-      href: 'https://lison16.github.io/iview-admin-doc/#/',
+      href: 'http://172.16.15.102:8888/dc',
       icon: 'ios-book'
     }
   },
   {
-    path: '/join',
-    name: 'join',
-    component: Main,
-    children: [
-      {
-        path: 'join_page',
-        name: 'join_page',
-        meta: {
-          icon: '_qq',
-          title: 'QQ群'
-        },
-        component: () => import('@/view/join-page.vue')
-      }
-    ]
-  },
-  {
-    path: '/components',
-    name: 'components',
+    path: '/data-search',
+    name: '数据查询',
     meta: {
       icon: 'logo-buffer',
-      title: '组件'
+      title: '数据查询',
+      access: ['user-admin', 'admin'],
+      sites: ['S001']
     },
     component: Main,
-    children: [
-      {
-        path: 'count_to_page',
-        name: 'count_to_page',
-        meta: {
-          icon: 'md-trending-up',
-          title: '数字渐变'
-        },
-        component: () => import('@/view/components/count-to/count-to.vue')
+    children: [{
+      path: 'real-time-search',
+      name: '详情数据',
+      meta: {
+        title: '详情数据'
       },
-      {
-        path: 'drag_list_page',
-        name: 'drag_list_page',
-        meta: {
-          icon: 'ios-infinite',
-          title: '拖拽列表'
-        },
-        component: () => import('@/view/components/drag-list/drag-list.vue')
+      component: () =>
+          import('@/view/data-search/real-time-search.vue')
+    },
+    {
+      path: 'history-search',
+      name: '历史数据',
+      meta: {
+        title: '历史数据'
       },
-      {
-        path: 'tables_page',
-        name: 'tables_page',
-        meta: {
-          icon: 'md-grid',
-          title: '多功能表格'
-        },
-        component: () => import('@/view/components/tables/tables.vue')
-      },
-      {
-        path: 'split_pane_page',
-        name: 'split_pane_page',
-        meta: {
-          icon: 'md-pause',
-          title: '分割窗口'
-        },
-        component: () => import('@/view/components/split-pane/split-pane.vue')
-      },
-      {
-        path: 'markdown_page',
-        name: 'markdown_page',
-        meta: {
-          icon: 'logo-markdown',
-          title: 'Markdown编辑器'
-        },
-        component: () => import('@/view/components/markdown/markdown.vue')
-      },
-      {
-        path: 'editor_page',
-        name: 'editor_page',
-        meta: {
-          icon: 'ios-create',
-          title: '富文本编辑器'
-        },
-        component: () => import('@/view/components/editor/editor.vue')
-      },
-      {
-        path: 'icons_page',
-        name: 'icons_page',
-        meta: {
-          icon: '_bear',
-          title: '自定义图标'
-        },
-        component: () => import('@/view/components/icons/icons.vue')
-      }
+      component: () =>
+          import('@/view/data-search/history-search.vue')
+    }
     ]
   },
   {
-    path: '/update',
-    name: 'update',
+    path: '/date-statistics',
+    name: 'date-statistics',
     meta: {
-      icon: 'md-cloud-upload',
-      title: '数据上传'
+      icon: 'md-stats',
+      title: '按日统计',
+      access: ['admin']
     },
     component: Main,
-    children: [
-      {
-        path: 'update_table_page',
-        name: 'update_table_page',
-        meta: {
-          icon: 'ios-document',
-          title: '上传Csv'
-        },
-        component: () => import('@/view/update/update-table.vue')
+    children: [{
+      path: 'zh-date',
+      name: 'zh-date',
+      meta: {
+        title: '日间实时'
       },
-      {
-        path: 'update_paste_page',
-        name: 'update_paste_page',
-        meta: {
-          icon: 'md-clipboard',
-          title: '粘贴表格数据'
-        },
-        component: () => import('@/view/update/update-paste.vue')
-      }
-    ]
-  },
-  {
-    path: '/excel',
-    name: 'excel',
-    meta: {
-      icon: 'ios-stats',
-      title: 'EXCEL导入导出'
+      component: () =>
+          import('@/view/date-statistics/zh-date.vue')
     },
-    component: Main,
-    children: [
-      {
-        path: 'upload-excel',
-        name: 'upload-excel',
-        meta: {
-          icon: 'md-add',
-          title: '导入EXCEL'
-        },
-        component: () => import('@/view/excel/upload-excel.vue')
+    {
+      path: 'xs-date',
+      name: 'xs-date',
+      meta: {
+        title: '维度统计'
       },
-      {
-        path: 'export-excel',
-        name: 'export-excel',
-        meta: {
-          icon: 'md-download',
-          title: '导出EXCEL'
-        },
-        component: () => import('@/view/excel/export-excel.vue')
-      }
+      component: () =>
+          import('@/view/date-statistics/xs-date.vue')
+    }
     ]
   },
   {
-    path: '/tools_methods',
-    name: 'tools_methods',
+    path: '/data-analyze',
+    name: 'data-analyze',
     meta: {
-      hide: true
+      icon: 'md-stats',
+      title: '数据分析',
+      notCache: true
     },
     component: Main,
-    children: [
-      {
-        path: 'tools_methods_page',
-        name: 'tools_methods_page',
-        meta: {
-          icon: 'ios-hammer',
-          title: '工具方法',
-          beforeCloseName: 'before_close_normal'
-        },
-        component: () => import('@/view/tools-methods/tools-methods.vue')
-      }
-    ]
-  },
-  {
-    path: '/i18n',
-    name: 'i18n',
-    meta: {
-      hide: true
-    },
-    component: Main,
-    children: [
-      {
-        path: 'i18n_page',
-        name: 'i18n_page',
-        meta: {
-          icon: 'md-planet',
-          title: '国际化'
-        },
-        component: () => import('@/view/i18n/i18n-page.vue')
-      }
-    ]
-  },
-  {
-    path: '/error_store',
-    name: 'error_store',
-    meta: {
-      hide: true
-    },
-    component: Main,
-    children: [
-      {
-        path: 'error_store_page',
-        name: 'error_store_page',
-        meta: {
-          icon: 'ios-bug',
-          title: '错误收集'
-        },
-        component: () => import('@/view/error-store/error-store.vue')
-      }
-    ]
-  },
-  {
-    path: '/error_logger',
-    name: 'error_logger',
-    meta: {
-      hide: true,
-      hideInMenu: true
-    },
-    component: Main,
-    children: [
-      {
-        path: 'error_logger_page',
-        name: 'error_logger_page',
-        meta: {
-          icon: 'ios-bug',
-          title: '错误收集'
-        },
-        component: () => import('@/view/single-page/error-logger.vue')
-      }
-    ]
-  },
-  {
-    path: '/directive',
-    name: 'directive',
-    meta: {
-      hide: true
-    },
-    component: Main,
-    children: [
-      {
-        path: 'directive_page',
-        name: 'directive_page',
-        meta: {
-          icon: 'ios-navigate',
-          title: '指令'
-        },
-        component: () => import('@/view/directive/directive.vue')
-      }
-    ]
-  },
-  {
-    path: '/multilevel',
-    name: 'multilevel',
-    meta: {
-      icon: 'md-menu',
-      title: '多级菜单'
-    },
-    component: Main,
-    children: [
-      {
-        path: 'level_2_1',
-        name: 'level_2_1',
-        meta: {
-          icon: 'md-funnel',
-          title: '二级-1'
-        },
-        component: () => import('@/view/multilevel/level-2-1.vue')
+    children: [{
+      path: 'customer-flow',
+      name: 'customer-flow',
+      meta: {
+        title: '时间段客流',
+        notCache: true
       },
-      {
-        path: 'level_2_2',
-        name: 'level_2_2',
-        meta: {
-          access: ['super_admin'],
-          icon: 'md-funnel',
-          showAlways: true,
-          title: '二级-2'
-        },
-        component: parentView,
-        children: [
-          {
-            path: 'level_2_2_1',
-            name: 'level_2_2_1',
-            meta: {
-              icon: 'md-funnel',
-              title: '三级'
-            },
-            component: () => import('@/view/multilevel/level-2-2/level-3-1.vue')
-          }
-        ]
+      component: () =>
+          import('@/view/data-analyze/customer-flow/customerFlow.vue')
+    },
+    {
+      path: 'user-flow-history',
+      name: 'user-flow-history',
+      meta: {
+        title: '客流历史对比',
+        notCache: true
       },
-      {
-        path: 'level_2_3',
-        name: 'level_2_3',
-        meta: {
-          icon: 'md-funnel',
-          title: '二级-3'
-        },
-        component: () => import('@/view/multilevel/level-2-3.vue')
-      }
+      component: () =>
+          import('@/view/data-analyze/user-flow-history/user-flow-history.vue')
+    },
+    {
+      path: 'attr-place',
+      name: 'attr-place',
+      meta: {
+        title: '客源地'
+      },
+      component: () =>
+          import('@/view/data-analyze/attr-place/attrPlace.vue')
+    },
+    {
+      path: 'age-gender',
+      name: 'age-gender',
+      meta: {
+        title: '年龄段与性别'
+      },
+      component: () =>
+          import('@/view/data-analyze/age-gender/ageGender.vue')
+    },
+    {
+      path: 'age',
+      name: 'age',
+      meta: {
+        title: '年龄段'
+      },
+      component: () =>
+          import('@/view/data-analyze/age/age.vue')
+    },
+    {
+      path: 'gender',
+      name: 'gender',
+      meta: {
+        title: '性别'
+      },
+      component: () =>
+          import('@/view/data-analyze/gender/gender.vue')
+    },
+    {
+      path: 'direct-ota',
+      name: 'direct-ota',
+      meta: {
+        title: '直销与OTA客流'
+      },
+      component: () =>
+          import('@/view/data-analyze/direct-ota/directOta.vue')
+    },
+    {
+      path: 'direct',
+      name: 'direct',
+      meta: {
+        title: '直销客流'
+      },
+      component: () =>
+          import('@/view/data-analyze/direct/direct.vue')
+    },
+    {
+      path: 'ota',
+      name: 'ota',
+      meta: {
+        title: 'OTA客流'
+      },
+      component: () =>
+          import('@/view/data-analyze/ota/ota.vue')
+    },
+    {
+      path: 'agency-person',
+      name: 'agency-person',
+      meta: {
+        title: '团队与散客'
+      },
+      component: () =>
+          import('@/view/data-analyze/agency-person/agencyPerson.vue')
+    },
+    {
+      path: 'agency',
+      name: 'agency',
+      meta: {
+        title: '团队'
+      },
+      component: () =>
+          import('@/view/data-analyze/agency/agency.vue')
+    },
+    {
+      path: 'seller',
+      name: 'seller',
+      meta: {
+        title: '销售员'
+      },
+      component: () =>
+          import('@/view/data-analyze/seller/seller.vue')
+    },
+    {
+      path: 'coupon',
+      name: 'coupon',
+      meta: {
+        title: '优惠票'
+      },
+      component: () =>
+          import('@/view/data-analyze/coupon/coupon.vue')
+    },
+    {
+      path: 'pay-channel',
+      name: 'pay-channel',
+      meta: {
+        title: '支付渠道'
+      },
+      component: () =>
+          import('@/view/data-analyze/pay-channel/payChannel.vue')
+    },
+    {
+      path: 'ticket-time',
+      name: 'ticket-time',
+      meta: {
+        title: '现场售票时段',
+        notCache: true
+      },
+      component: () =>
+          import('@/view/data-analyze/ticket-time/ticket-time.vue')
+    },
+    {
+      path: 'lock-medium',
+      name: 'lock-medium',
+      meta: {
+        title: '过闸介质',
+        notCache: true
+      },
+      component: () =>
+          import('@/view/data-analyze/lock-medium/lock-medium.vue')
+    },
+    {
+      path: 'refund-abnormal',
+      name: 'refund-abnormal',
+      meta: {
+        title: '退票异常',
+        notCache: true
+      },
+      component: () =>
+          import('@/view/data-analyze/refund-abnormal/refund-abnormal.vue')
+    },
+    {
+      path: 'travel-agency',
+      name: 'travel-agency',
+      meta: {
+        title: '旅行社',
+        notCache: true
+      },
+      component: () =>
+          import('@/view/data-analyze/travel-agency/travel-agency.vue')
+    },
+    {
+      path: 'tickets-kind',
+      name: 'tickets-kind',
+      meta: {
+        title: '票种',
+        notCache: true
+      },
+      component: () =>
+          import('@/view/data-analyze/tickets-kind/tickets-kind.vue')
+    },
+    {
+      path: 'sale-use-period',
+      name: 'sale-use-period',
+      meta: {
+        title: '购票入园日期',
+        notCache: true
+      },
+      component: () =>
+          import('@/view/data-analyze/sale-use-period/sale-use-period.vue')
+    },
+    {
+      path: 'repeat',
+      name: 'repeat',
+      meta: {
+        title: '二次入园',
+        notCache: true
+      },
+      component: () =>
+          import('@/view/data-analyze/repeat/repeat.vue')
+    },
+    {
+      path: 'appointment',
+      name: 'appointment',
+      meta: {
+        title: '预约与实际入园',
+        notCache: true
+      },
+      component: () =>
+          import('@/view/data-analyze/appointment/appointment.vue')
+    }
     ]
   },
   {
-    path: '/argu',
-    name: 'argu',
+    path: '/data-operations',
+    name: 'data-operations',
     meta: {
-      hideInMenu: true
+      icon: 'md-build',
+      title: '数据运维',
+      access: ['super_admin', 'admin'],
+      sites: ['S001', 'N001', 'W001']
     },
     component: Main,
-    children: [
-      {
-        path: 'params/:id',
-        name: 'params',
-        meta: {
-          icon: 'md-flower',
-          title: route => `动态路由-${route.params.id}`,
-          notCache: true,
-          beforeCloseName: 'before_close_normal'
-        },
-        component: () => import('@/view/argu-page/params.vue')
+    children: [{
+      path: 'common-data',
+      name: 'common-data',
+      meta: {
+        title: '公共数据'
       },
-      {
-        path: 'query',
-        name: 'query',
-        meta: {
-          icon: 'md-flower',
-          title: route => `带参路由-${route.query.id}`,
-          notCache: true
-        },
-        component: () => import('@/view/argu-page/query.vue')
-      }
+      component: () =>
+          import('@/view/data-operations/common-data.vue')
+    },
+    {
+      path: 'source-data',
+      meta: {
+        title: '源数据',
+        sites: ['S001']
+      },
+      name: 'source-data',
+      component: () =>
+          import('@/view/data-operations/source-data.vue')
+    },
+    {
+      path: 'latitude-param',
+      meta: {
+        title: '维度参数',
+        sites: ['W001']
+      },
+      name: 'latitude-param',
+      component: () =>
+          import('@/view/data-operations/latitude-param.vue')
+    }
     ]
+  },
+  {
+    path: '/user-admin',
+    name: 'user-admin',
+    redirect: '/user-admin',
+    component: Main,
+    meta: {
+      title: '用户管理',
+      icon: 'ios-body',
+      hideInMenu: false,
+      notCache: false,
+      access: ['super_admin', 'admin']
+    },
+    children: [{
+      path: 'user-admin',
+      name: 'user-admin',
+      meta: {
+        title: '用户管理',
+        icon: 'ios-body',
+        hideInMenu: false,
+        notCache: false
+      },
+      component: () =>
+        import('@/view/user-admin/user')
+    }]
   },
   {
     path: '/401',

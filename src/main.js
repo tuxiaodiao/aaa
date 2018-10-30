@@ -7,6 +7,7 @@ import store from './store'
 import iView from 'iview'
 import i18n from '@/locale'
 import config from '@/config'
+import $ from 'jquery'
 import importDirective from '@/directive'
 import installPlugin from '@/plugin'
 import 'iview/dist/styles/iview.css'
@@ -14,7 +15,7 @@ import './index.less'
 import '@/assets/icons/iconfont.css'
 // 实际打包时应该不引入mock
 /* eslint-disable */
-if (process.env.NODE_ENV !== 'production') require('@/mock')
+// if (process.env.NODE_ENV !== 'production') require('@/mock')
 
 Vue.use(iView, {
   i18n: (key, value) => i18n.t(key, value)
@@ -35,6 +36,12 @@ Vue.prototype.$config = config
  * 注册指令
  */
 importDirective(Vue)
+
+// 引入 UMD 模块
+import ECharts from 'vue-echarts/components/ECharts'
+import * as echarts from 'echarts';
+// 注册组件后即可使用
+Vue.component('chart', ECharts);
 
 /* eslint-disable no-new */
 new Vue({
